@@ -1174,6 +1174,10 @@
   @media (max-width:640px){
     .aa-hero .eyebrow{flex-wrap:wrap; justify-content:center; row-gap:4px}
   }
+
+  /* The Exhibit A caption is a full sentence, not a label, so it opts out of
+     the uppercase treatment .cs-table-hint applies to short hints. */
+  .cs-table-hint.cs-sentence{text-transform:none; letter-spacing:.01em; font-size:.75rem; line-height:1.6}
 </style>
 </head>
 <body>
@@ -1227,46 +1231,35 @@
       </defs>
       <rect width="1600" height="900" fill="url(#attribGrid)"/>
 
-      <!-- The attribution pipeline this case study is about, drawn as a
-           technical schematic in the same thin gold stroke and staggered
-           draw as the other case study heroes: two ad sources feed a
-           tracking layer, which feeds first-time inquiries, which the
-           client's admissions team scores, with the admissions stage left
-           deliberately dashed because it is pending. Routed low and wide so
-           the headline sits on clean ground. -->
+      <!-- Beth 2026-08-14: 'the animation here is interferring with the CTA.'
+           The schematic previously ran a rail and five nodes straight through
+           y=640-760, which is exactly where the button row and the lede sit.
+           The whole pipeline now lives in the empty band ABOVE the eyebrow
+           (y 60-190); everything from y=200 down is left clear for content.
+           Subject unchanged: ad sources feed tracking, tracking feeds
+           first-time inquiries, the client scores qualified, admissions is
+           dashed because it is pending. -->
       <g class="gp-lines" fill="none" stroke="rgba(212,175,55,0.42)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-        <!-- 01 · two source nodes, upper left -->
-        <path class="gp-line" style="--gd:0s" d="M120 150 L360 150 L360 250 L120 250 Z"/>
-        <path class="gp-line" style="--gd:0.3s" d="M120 300 L360 300 L360 400 L120 400 Z"/>
-        <!-- 02 · both feed one tracking layer -->
-        <path class="gp-line" style="--gd:0.9s" d="M360 200 L460 200 L460 640 M360 350 L460 350"/>
-        <!-- 03 · the rail across the base -->
-        <path class="gp-line" style="--gd:1.3s" d="M180 700 L1420 700"/>
-        <!-- 04 · tracking layer node -->
-        <path class="gp-line" style="--gd:1.6s" d="M380 640 L620 640 L620 760 L380 760 Z"/>
-        <path class="gp-line" style="--gd:1.8s" d="M420 700 L580 700 M420 670 L580 670 M420 730 L580 730"/>
-        <!-- 05 · first-time inquiries node -->
-        <path class="gp-line" style="--gd:2.2s" d="M700 640 L940 640 L940 760 L700 760 Z"/>
-        <path class="gp-line" style="--gd:2.4s" d="M620 700 L700 700"/>
-        <!-- 06 · qualified node, tighter box to read as a narrowing funnel -->
-        <path class="gp-line" style="--gd:2.8s" d="M1020 660 L1220 660 L1220 740 L1020 740 Z"/>
-        <path class="gp-line" style="--gd:3s" d="M940 700 L1020 700"/>
-        <!-- 07 · admissions stage, dashed because it is pending -->
-        <path class="gp-line" style="--gd:3.4s; stroke-dasharray:6 8; opacity:0.5" d="M1300 670 L1440 670 L1440 730 L1300 730 Z M1220 700 L1300 700"/>
-        <!-- 08 · corner brackets, upper right, to balance the frame -->
-        <path class="gp-line" style="--gd:3.8s; opacity:0.4" d="M1480 140 L1480 260 M1420 140 L1480 140"/>
+        <path class="gp-line" style="--gd:0s"   d="M140 20 L360 20 L360 76 L140 76 Z"/>
+        <path class="gp-line" style="--gd:0.5s" d="M360 48 L420 48"/>
+        <path class="gp-line" style="--gd:0.8s" d="M420 20 L640 20 L640 76 L420 76 Z"/>
+        <path class="gp-line" style="--gd:1s"   d="M470 36 L590 36 M470 60 L590 60"/>
+        <path class="gp-line" style="--gd:1.3s" d="M640 48 L700 48"/>
+        <path class="gp-line" style="--gd:1.6s" d="M700 20 L920 20 L920 76 L700 76 Z"/>
+        <path class="gp-line" style="--gd:2s"   d="M920 48 L980 48"/>
+        <path class="gp-line" style="--gd:2.3s" d="M980 26 L1160 26 L1160 70 L980 70 Z"/>
+        <path class="gp-line" style="--gd:2.7s" d="M1160 48 L1220 48"/>
+        <path class="gp-line" style="--gd:3s; stroke-dasharray:6 8; opacity:0.5" d="M1220 29 L1400 29 L1400 67 L1220 67 Z"/>
+        <!-- faint framing ticks at the very top edge only -->
+        <path class="gp-line" style="--gd:3.4s; opacity:0.3" d="M140 6 L140 14 M1400 6 L1400 14"/>
       </g>
 
-      <g class="gp-labels" fill="rgba(212,175,55,0.60)" font-family="'JetBrains Mono',ui-monospace,Menlo,monospace" font-size="16" letter-spacing="3">
-        <text class="gp-label" style="--gd:4s" x="150" y="207" font-size="13" letter-spacing="4" fill="rgba(212,175,55,0.45)">FACEBOOK ADS</text>
-        <text class="gp-label" style="--gd:4.1s" x="150" y="357" font-size="13" letter-spacing="4" fill="rgba(212,175,55,0.45)">INSTAGRAM ADS</text>
-        <text class="gp-label" style="--gd:4.2s" x="404" y="812" font-size="13" letter-spacing="4">CALL + FORM TRACKING</text>
-        <text class="gp-label" style="--gd:4.4s" x="724" y="812" font-size="13" letter-spacing="4">FIRST-TIME INQUIRIES</text>
-        <text class="gp-label" style="--gd:4.6s" x="1044" y="812" font-size="13" letter-spacing="4">QUALIFIED</text>
-        <!-- right-anchored to the node's own right edge: at 1440-wide the
-             visible viewBox band stops around x=1508, so a left-anchored
-             label here loses its last few characters. -->
-        <text class="gp-label" style="--gd:4.8s" x="1440" y="812" font-size="13" letter-spacing="4" text-anchor="end" fill="rgba(212,175,55,0.38)">ADMISSIONS &#183; PENDING</text>
+      <g class="gp-labels" fill="rgba(212,175,55,0.55)" font-family="'JetBrains Mono',ui-monospace,Menlo,monospace" font-size="12" letter-spacing="3" text-anchor="middle">
+        <text class="gp-label" style="--gd:3.6s" x="250"  y="100">META ADS</text>
+        <text class="gp-label" style="--gd:3.8s" x="530"  y="100">CALL + FORM TRACKING</text>
+        <text class="gp-label" style="--gd:4s"   x="810"  y="100">FIRST-TIME INQUIRIES</text>
+        <text class="gp-label" style="--gd:4.2s" x="1070" y="100">QUALIFIED</text>
+        <text class="gp-label" style="--gd:4.4s" x="1310" y="100" fill="rgba(212,175,55,0.36)">ADMISSIONS &#183; PENDING</text>
       </g>
     </svg>
 
@@ -1497,20 +1490,21 @@
 
         <div class="eyebrow">Exhibit A</div>
         <h3>Exhibit A</h3>
-        <p class="intro small">Meta Ads Manager campaign table for the reported window, showing the active conversion campaign, its daily budget, amount spent, and results against the custom qualified-inquiry event. Published version carries redaction bars over the ad account ID and the two campaign-name brand tokens; spend, budget, and result columns remain visible.</p>
-        <!-- EXHIBIT A IMAGE SLOT. Dimi's source file describes this exhibit
-             but does not contain the screenshot; he notes it is supplied as a
-             separate image file with redaction bars applied before
-             publication. Drop the file into ../img/ and swap this note for the
-             figure below, which already carries his approved alt text:
-             <figure class="cs-banner"><img src="../img/rehab-exhibit-a.png"
-               alt="Meta Ads Manager table showing the active campaign at a $333
-               daily budget with $1,320.26 spent and 13 custom qualified-inquiry
-               conversions at $101.56 each; account and campaign names redacted."
-               width="1600" height="460" loading="lazy"></figure>          -->
+        <!-- EXHIBIT A IMAGE SLOT. Matches the source build exactly: a figure
+             holding the description and the caption, with no <img>, because
+             the screenshot travels as a separate file and has not been
+             supplied. When it lands, drop it at ../img/rehab-exhibit-a.png and
+             uncomment the figure below; its alt text is already written from
+             the caption. -->
         <div class="cs-note">
-          <p><b>Figures visible in the exhibit:</b> a $333 daily budget, $1,320.26 spent, and 13 custom qualified-inquiry conversions at $101.56 each. The account ID and the two campaign-name brand tokens are redacted; spend, budget, and result columns remain visible.</p>
+          <p>Meta Ads Manager campaign table for the reported window, showing the active conversion campaign, its daily budget, amount spent, and results against the custom qualified-inquiry event. Published version carries redaction bars over the ad account ID and the two campaign-name brand tokens; spend, budget, and result columns remain visible. Supplied as a separate image file; bars applied before publication.</p>
         </div>
+        <!--
+        <figure class="cs-banner"><img src="../img/rehab-exhibit-a.png"
+          alt="Meta Ads Manager table showing the active campaign at a $333 daily budget with $1,320.26 spent and 13 custom qualified-inquiry conversions at $101.56 each; account and campaign names redacted."
+          width="1600" height="460" loading="lazy"></figure>
+        -->
+        <p class="cs-table-hint cs-sentence">Alt text for published image: &ldquo;Meta Ads Manager table showing the active campaign at a $333 daily budget with $1,320.26 spent and 13 custom qualified-inquiry conversions at $101.56 each; account and campaign names redacted.&rdquo;</p>
 
         <div class="eyebrow">Limitations</div>
         <h3>What this <em>does not prove</em></h3>
