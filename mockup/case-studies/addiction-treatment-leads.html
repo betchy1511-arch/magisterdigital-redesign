@@ -962,8 +962,28 @@
      the short 4-word headline this hero was built for. A long-headline
      modifier drops the clamp so the sentence sets at a readable size instead
      of filling the viewport, and the standing stat sits above it. */
-  .aa-hero h1.cs-h1-long{font-size:clamp(1.45rem, 3.1vw, 2.6rem); line-height:1.34;
-    max-width:26ch; margin-left:auto; margin-right:auto}
+  /* Beth 2026-08-14: 'the texts are not aligned again'. Centred copy set to a
+     fixed measure wraps wherever the measure happens to fall, which leaves a
+     ragged stack with one short orphan line. text-wrap:balance makes the
+     browser even out the line lengths instead, so the block reads as a
+     deliberate shape. Applied to the headline and the lede together. */
+  .aa-hero h1.cs-h1-long{font-size:clamp(1.5rem, 3.2vw, 2.7rem); line-height:1.3;
+    /* Measured, not guessed: the <em> pill is an inline-block, so it is one
+       unbreakable ~258px unit that text-wrap:balance cannot split. At every
+       measure from 20ch to 42ch it fell onto a line of its own, leaving the
+       stub line Beth flagged. Fixed by breaking the line explicitly at a
+       point that makes the two lines almost the same width (913 vs 904 at
+       1440), with the break neutralised on small screens so the copy can
+       reflow naturally there. */
+    max-width:940px; margin-left:auto; margin-right:auto;
+    text-align:center;
+    /* Beth 2026-08-14 'still the same': a line break at an EXISTING hyphen is
+       not prevented by word-break, so the compound is pinned in the markup
+       with .cs-nb instead. */
+    overflow-wrap:normal}
+  .cs-nb{white-space:nowrap}
+  @media (max-width:900px){ .cs-h1-break{display:none} }
+  .aa-hero .lede{text-wrap:balance}
   @media (max-width:640px){
  .aa-hero h1.cs-h1-long{max-width:none}
   }
@@ -1231,35 +1251,44 @@
       </defs>
       <rect width="1600" height="900" fill="url(#attribGrid)"/>
 
-      <!-- Beth 2026-08-14: 'the animation here is interferring with the CTA.'
-           The schematic previously ran a rail and five nodes straight through
-           y=640-760, which is exactly where the button row and the lede sit.
-           The whole pipeline now lives in the empty band ABOVE the eyebrow
-           (y 60-190); everything from y=200 down is left clear for content.
-           Subject unchanged: ad sources feed tracking, tracking feeds
-           first-time inquiries, the client scores qualified, admissions is
-           dashed because it is pending. -->
+      <!-- Beth 2026-08-14: 'u cannot remove the animation u need to adjust.'
+           So the schematic keeps its full presence, it is just routed AROUND
+           the content instead of under it. Measured free zones in this hero:
+           the band above the eyebrow ends at viewBox y=124, the byline ends
+           about y=797, and the centred content column spans roughly x=182 to
+           x=1418. The pipeline runs across the top, drops down both margins,
+           and closes along a bottom rail, so it frames the copy and never
+           sits behind the headline or the buttons. -->
       <g class="gp-lines" fill="none" stroke="rgba(212,175,55,0.42)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <!-- top pipeline: sources -> tracking -> inquiries -> qualified -> pending -->
         <path class="gp-line" style="--gd:0s"   d="M140 20 L360 20 L360 76 L140 76 Z"/>
-        <path class="gp-line" style="--gd:0.5s" d="M360 48 L420 48"/>
-        <path class="gp-line" style="--gd:0.8s" d="M420 20 L640 20 L640 76 L420 76 Z"/>
-        <path class="gp-line" style="--gd:1s"   d="M470 36 L590 36 M470 60 L590 60"/>
-        <path class="gp-line" style="--gd:1.3s" d="M640 48 L700 48"/>
-        <path class="gp-line" style="--gd:1.6s" d="M700 20 L920 20 L920 76 L700 76 Z"/>
-        <path class="gp-line" style="--gd:2s"   d="M920 48 L980 48"/>
-        <path class="gp-line" style="--gd:2.3s" d="M980 26 L1160 26 L1160 70 L980 70 Z"/>
-        <path class="gp-line" style="--gd:2.7s" d="M1160 48 L1220 48"/>
-        <path class="gp-line" style="--gd:3s; stroke-dasharray:6 8; opacity:0.5" d="M1220 29 L1400 29 L1400 67 L1220 67 Z"/>
-        <!-- faint framing ticks at the very top edge only -->
-        <path class="gp-line" style="--gd:3.4s; opacity:0.3" d="M140 6 L140 14 M1400 6 L1400 14"/>
+        <path class="gp-line" style="--gd:0.4s" d="M360 48 L420 48"/>
+        <path class="gp-line" style="--gd:0.7s" d="M420 20 L640 20 L640 76 L420 76 Z"/>
+        <path class="gp-line" style="--gd:0.9s" d="M470 36 L590 36 M470 60 L590 60"/>
+        <path class="gp-line" style="--gd:1.2s" d="M640 48 L700 48"/>
+        <path class="gp-line" style="--gd:1.5s" d="M700 20 L920 20 L920 76 L700 76 Z"/>
+        <path class="gp-line" style="--gd:1.8s" d="M920 48 L980 48"/>
+        <path class="gp-line" style="--gd:2.1s" d="M980 26 L1160 26 L1160 70 L980 70 Z"/>
+        <path class="gp-line" style="--gd:2.4s" d="M1160 48 L1220 48"/>
+        <path class="gp-line" style="--gd:2.7s; stroke-dasharray:6 8; opacity:0.5" d="M1220 29 L1400 29 L1400 67 L1220 67 Z"/>
+
+        <!-- left margin drop, clear of the content column -->
+        <path class="gp-line" style="--gd:3s"   d="M140 76 L140 845"/>
+        <path class="gp-line" style="--gd:3.3s; opacity:0.55" d="M110 220 L170 220 M110 400 L170 400 M110 580 L170 580 M110 720 L170 720"/>
+        <!-- right margin drop -->
+        <path class="gp-line" style="--gd:3.1s" d="M1400 67 L1400 845"/>
+        <path class="gp-line" style="--gd:3.4s; opacity:0.55" d="M1370 220 L1430 220 M1370 400 L1430 400 M1370 580 L1430 580 M1370 720 L1430 720"/>
+        <!-- bottom rail closing the loop, below the byline -->
+        <path class="gp-line" style="--gd:3.8s" d="M140 845 L1400 845"/>
+        <path class="gp-line" style="--gd:4.1s; opacity:0.5" d="M660 845 L660 875 M940 845 L940 875"/>
       </g>
 
       <g class="gp-labels" fill="rgba(212,175,55,0.55)" font-family="'JetBrains Mono',ui-monospace,Menlo,monospace" font-size="12" letter-spacing="3" text-anchor="middle">
-        <text class="gp-label" style="--gd:3.6s" x="250"  y="100">META ADS</text>
-        <text class="gp-label" style="--gd:3.8s" x="530"  y="100">CALL + FORM TRACKING</text>
-        <text class="gp-label" style="--gd:4s"   x="810"  y="100">FIRST-TIME INQUIRIES</text>
-        <text class="gp-label" style="--gd:4.2s" x="1070" y="100">QUALIFIED</text>
-        <text class="gp-label" style="--gd:4.4s" x="1310" y="100" fill="rgba(212,175,55,0.36)">ADMISSIONS &#183; PENDING</text>
+        <text class="gp-label" style="--gd:4.3s" x="250"  y="100">META ADS</text>
+        <text class="gp-label" style="--gd:4.4s" x="530"  y="100">CALL + FORM TRACKING</text>
+        <text class="gp-label" style="--gd:4.5s" x="810"  y="100">FIRST-TIME INQUIRIES</text>
+        <text class="gp-label" style="--gd:4.6s" x="1070" y="100">QUALIFIED</text>
+        <text class="gp-label" style="--gd:4.7s" x="1310" y="100" fill="rgba(212,175,55,0.36)">ADMISSIONS &#183; PENDING</text>
       </g>
     </svg>
 
@@ -1270,10 +1299,14 @@
     <div class="eyebrow"><span class="num">01</span> &middot; Addiction treatment <span class="sep">/</span> National (US) <span class="sep">/</span> Multi-facility provider <span class="sep">/</span> First 14 days</div>
     <span class="cs-hero-stat">114</span>
     <p class="cs-hero-stat-sub">First-time treatment inquiries &middot; first 14 days of a new channel</p>
-    <h1 class="cs-h1-long">A national addiction-treatment provider opened a paid social channel it never had, and in the first 14 days <em>114 people</em> reached out for the first time</h1>
+    <!-- Beth 2026-08-14: 'reduntant'. 114 was stated by the standing stat, by
+         the H1 pill and again in the lede. Each figure now appears once: the
+         stat carries the volume, the H1 carries what was built, the lede
+         carries the money and the client's verdict. -->
+    <h1 class="cs-h1-long">A national <span class="cs-nb">addiction-treatment</span> provider<br class="cs-h1-break">opened a paid social channel <em>it never had</em></h1>
     <p class="lede">
-      <code>$2,757.73 in ad spend</code> (media only) &rarr; 114 first-time inquiries at <code>$24.19 per inquiry</code>.
-      The client&rsquo;s own admissions team verified 27 of them as qualified.
+      <code>$2,757.73</code> of media, at <code>$24.19 per inquiry</code>.
+      The client&rsquo;s own admissions team verified <b>27</b> as qualified.
     </p>
     <div class="aa-hero-cta">
       <a class="btn" href="#call"><span class="t">Book a strategy call</span><span class="ar">&rarr;</span></a>
